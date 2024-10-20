@@ -59,8 +59,8 @@ class LessonListApiView(ListAPIView):
     serializer_class = LessonSerializer
     permission_classes = (AllowAny,)
     filter_backends = [DjangoFilterBackend, OrderingFilter]
-    filterset_fields = ('module', 'name')
-    ordering_fields = ('module',)
+    filterset_fields = ("module", "name")
+    ordering_fields = ("module",)
 
 
 class LessonRetrieveApiView(RetrieveAPIView):
@@ -72,10 +72,10 @@ class LessonRetrieveApiView(RetrieveAPIView):
 class LessonUpdateApiView(UpdateAPIView):
     queryset = Lesson.objects.all()
     serializer_class = LessonSerializer
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated, IsOwner)
 
 
 class LessonDestroyApiView(DestroyAPIView):
     queryset = Lesson.objects.all()
     serializer_class = LessonSerializer
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated, IsOwner)

@@ -58,6 +58,14 @@ class Lesson(models.Model):
         blank=True,
         related_name="modules",
     )
+    author = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        verbose_name="Автор",
+        help_text="Укажите автора",
+    )
 
     class Meta:
         verbose_name = "Урок"
