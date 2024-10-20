@@ -25,5 +25,11 @@ class ModuleDetailSerializer(ModelSerializer):
 
     class Meta:
         model = Module
-        fields = ("name", "description", "number", "author", "lessons_in_module", "lesson")
-
+        fields = (
+            "name",
+            "description",
+            "number",
+            "author",
+            "lessons_in_module",
+            "lesson",
+        )
