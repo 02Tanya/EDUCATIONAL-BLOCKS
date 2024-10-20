@@ -39,7 +39,7 @@ class ModuleViewSet(ModelViewSet):
         elif self.action == "retrieve":
             self.permission_classes = (AllowAny,)
         elif self.action == ["destroy", "update"]:
-            self.permission_classes = (IsOwner | IsModer)
+            self.permission_classes = IsOwner | IsModer
         return super().get_permissions()
 
 

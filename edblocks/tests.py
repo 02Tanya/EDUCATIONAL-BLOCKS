@@ -75,7 +75,7 @@ class LessonAPITestCase(APITestCase):
                     "name": self.lesson.name,
                     "description": self.lesson.description,
                     "module": self.course.pk,
-                    "author": None
+                    "author": None,
                 }
             ],
         }

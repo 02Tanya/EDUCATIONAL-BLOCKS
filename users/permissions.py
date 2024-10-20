@@ -10,6 +10,7 @@ class IsOwner(permissions.BasePermission):
             return True
         return False
 
+
 class IsModer(permissions.BasePermission):
     """Проверяет, является ли пользователь модератором."""
 
