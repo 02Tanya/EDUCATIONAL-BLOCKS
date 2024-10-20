@@ -20,6 +20,14 @@ class Module(models.Model):
         null=True,
         blank=True,
     )
+    author = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        verbose_name="Автор",
+        help_text="Укажите автора",
+    )
 
     class Meta:
         verbose_name = "Образовательный модуль"
@@ -50,14 +58,6 @@ class Lesson(models.Model):
         null=True,
         blank=True,
         related_name="modules",
-    )
-    author = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-        verbose_name="Автор",
-        help_text="Укажите автора",
     )
 
     class Meta:
