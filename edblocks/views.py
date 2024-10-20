@@ -17,7 +17,7 @@ from edblocks.serializers import (
     ModuleSerializer,
     ModuleDetailSerializer,
 )
-from users.permissions import IsOwner
+from users.permissions import IsOwner, IsModer
 
 
 class ModuleViewSet(ModelViewSet):
@@ -72,10 +72,10 @@ class LessonRetrieveApiView(RetrieveAPIView):
 class LessonUpdateApiView(UpdateAPIView):
     queryset = Lesson.objects.all()
     serializer_class = LessonSerializer
-    permission_classes = (IsAuthenticated, IsOwner)
+    permission_classes = (IsAuthenticated, IsOwner | IsModer)
 
 
 class LessonDestroyApiView(DestroyAPIView):
     queryset = Lesson.objects.all()
     serializer_class = LessonSerializer
-    permission_classes = (IsAuthenticated, IsOwner)
+    permission_classes = (IsAuthenticated, IsOwner | IsModer)
