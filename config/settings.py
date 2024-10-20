@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'drf_yasg',
+    'corsheaders',
     'users',
     'edblocks',
 ]
@@ -43,6 +44,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -117,9 +119,7 @@ USE_TZ = True
 
 
 
-
 STATIC_URL = 'static/'
-
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
@@ -135,18 +135,18 @@ SIMPLE_JWT = {
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
-EMAIL_HOST = os.getenv("EMAIL_HOST")
-EMAIL_PORT = os.getenv("EMAIL_PORT")
-EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
-EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
-EMAIL_USE_TLS = os.getenv("EMAIL_USE_TLS", False) == "True"
-EMAIL_USE_SSL = os.getenv("EMAIL_USE_SSL", False) == "True"
+# EMAIL_HOST = os.getenv("EMAIL_HOST")
+# EMAIL_PORT = os.getenv("EMAIL_PORT")
+# EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
+# EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
+# EMAIL_USE_TLS = os.getenv("EMAIL_USE_TLS", False) == "True"
+# EMAIL_USE_SSL = os.getenv("EMAIL_USE_SSL", False) == "True"
+#
+# SERVER_EMAIL = EMAIL_HOST_USER
+# DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
-SERVER_EMAIL = EMAIL_HOST_USER
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-
-# CELERY_BROKER_URL = os.getenv("CELERY_BROKER_URL")
-# CELERY_RESULT_BACKEND = os.getenv("CELERY_RESULT_BACKEND")
+CELERY_BROKER_URL = os.getenv("CELERY_BROKER_URL")
+CELERY_RESULT_BACKEND = os.getenv("CELERY_RESULT_BACKEND")
 # CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
 #
 # CELERY_BEAT_SCHEDULE = {
@@ -155,13 +155,13 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 #         "schedule": timedelta(days=1),
 #     }
 # }
-#
-#
-# CORS_ALLOWED_ORIGINS = [
-#     "https://read-only.example.com",
-#     "https://read-and-write.example.com",
-# ]
-#
-# CSRF_TRUSTED_ORIGINS = ["https://read-and-write.example.com"]
-#
-# CORS_ALLOW_ALL_ORIGINS = False
+
+
+CORS_ALLOWED_ORIGINS = [
+    "https://read-only.example.com",
+    "https://read-and-write.example.com",
+]
+
+CSRF_TRUSTED_ORIGINS = ["https://read-and-write.example.com"]
+
+CORS_ALLOW_ALL_ORIGINS = False
