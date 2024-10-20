@@ -30,14 +30,14 @@ class UserListApiView(ListAPIView):
 
 class UserRetrieveApiView(RetrieveAPIView):
     queryset = User.objects.all()
-    serializer_class = UserSerializer
+    serializer_class = UserCreateSerializer
 
 
 class UserUpdateApiView(UpdateAPIView):
     queryset = User.objects.all()
-    serializer_class = UserSerializer
+    serializer_class = UserCreateSerializer
 
 
 class UserDestroyApiView(DestroyAPIView):
     queryset = User.objects.all()
-    serializer_class = UserSerializer
+    serializer_class = UserCreateSerializer

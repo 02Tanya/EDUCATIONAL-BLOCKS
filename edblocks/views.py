@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.filters import OrderingFilter
 from rest_framework.generics import (
     CreateAPIView,
     DestroyAPIView,
@@ -56,6 +58,9 @@ class LessonListApiView(ListAPIView):
     queryset = Lesson.objects.all()
     serializer_class = LessonSerializer
     permission_classes = (AllowAny,)
+    filter_backends = [DjangoFilterBackend, OrderingFilter]
+    filterset_fields = ('module', 'name')
+    ordering_fields = ('module',)
 
 
 class LessonRetrieveApiView(RetrieveAPIView):
