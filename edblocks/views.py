@@ -6,7 +6,7 @@ from rest_framework.generics import (
     RetrieveAPIView,
     UpdateAPIView,
 )
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.viewsets import ModelViewSet
 
 from edblocks.models import Lesson, Module
@@ -33,16 +33,18 @@ class ModuleViewSet(ModelViewSet):
 
     def get_permissions(self):
         if self.action == "create":
-            self.permission_classes = IsAuthenticated
+            self.permission_classes = (IsAuthenticated,)
+        elif self.action == "retrieve":
+            self.permission_classes = (AllowAny,)
         elif self.action == ["destroy", "update"]:
-            self.permission_classes = IsOwner
+            self.permission_classes = (IsOwner,)
         return super().get_permissions()
 
 
 class LessonCreateApiView(CreateAPIView):
     queryset = Lesson.objects.all()
     serializer_class = LessonSerializer
-    permission_classes = IsOwner
+    permission_classes = (IsOwner,)
 
     def perform_create(self, serializer):
         lesson = serializer.save()
@@ -53,20 +55,22 @@ class LessonCreateApiView(CreateAPIView):
 class LessonListApiView(ListAPIView):
     queryset = Lesson.objects.all()
     serializer_class = LessonSerializer
+    permission_classes = (AllowAny,)
 
 
 class LessonRetrieveApiView(RetrieveAPIView):
     queryset = Lesson.objects.all()
     serializer_class = LessonSerializer
+    permission_classes = (AllowAny,)
 
 
 class LessonUpdateApiView(UpdateAPIView):
     queryset = Lesson.objects.all()
     serializer_class = LessonSerializer
-    permission_classes = IsOwner
+    permission_classes = (IsOwner,)
 
 
 class LessonDestroyApiView(DestroyAPIView):
     queryset = Lesson.objects.all()
     serializer_class = LessonSerializer
-    permission_classes = IsOwner
+    permission_classes = (IsOwner,)

@@ -1,5 +1,4 @@
 from django.db import models
-from rest_framework.viewsets import ModelViewSet
 from django.conf import settings
 
 
