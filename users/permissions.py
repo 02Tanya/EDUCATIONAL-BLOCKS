@@ -10,10 +10,11 @@ class IsOwner(permissions.BasePermission):
             return True
         return False
 
+
 class IsModer(permissions.BasePermission):
     """Проверяет, является ли пользователь модератором."""
 
     message = "Вы не являетесь модератором"
 
     def has_permission(self, request, view):
-        return request.user.groups.filter(name="moders").exists()
+        return request.user.groups.filter(name="moder").exists()
